@@ -1,20 +1,20 @@
-import React from "react";
 import { FlatList } from "react-native";
-import { Task } from "../App";
+import { Task } from "../hooks/useTodos";
 import TaskItem from "./TaskItem";
 
 type Props = {
   tasks: Task[];
   onToggle: (id: string) => void;
+  onDelete: (id: string) => void;
 };
 
-export default function TaskList({ tasks, onToggle }: Props) {
+export default function TaskList({ tasks, onToggle, onDelete }: Props) {
   return (
     <FlatList
       data={tasks}
-      keyExtractor={(item) => item.id}
+      keyExtractor={item => item.id}
       renderItem={({ item }) => (
-        <TaskItem task={item} onToggle={onToggle} />
+        <TaskItem task={item} onToggle={onToggle} onDelete={onDelete} />
       )}
     />
   );
